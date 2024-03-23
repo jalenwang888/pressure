@@ -54,4 +54,12 @@ class AbController extends Controller
 
         }
     }
+
+    public function php(Request $request){
+        $response = ['status' => 'success',
+            'message' => 'Hello from PHP endpoint!',
+            'timestamp' => time()
+        ];
+       return response()->json($response);
+    }
 }

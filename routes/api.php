@@ -23,4 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::namespace('API')->withoutMiddleware([ThrottleRequests::class])->group(function (){
     //play_now 获取后验证。
     Route::get('register', [AbController::class, 'register']);
+    Route::get('php', [AbController::class, 'php']);
 });
