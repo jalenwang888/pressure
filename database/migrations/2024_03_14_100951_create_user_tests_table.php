@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable()->comment('用户名');
             $table->string('email', 32)->nullable()->comment('邮箱');
+            $table->string('sex', 32)->nullable()->comment('性别 Male， Female');
+            $table->integer('age')->nullable()->comment('年龄');
             $table->string('password')->nullable()->comment('密码');
             $table->string('servers')->nullable()->comment('服务器名字');
             $table->timestamps();

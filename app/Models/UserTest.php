@@ -12,6 +12,8 @@ class UserTest extends Model
     protected $fillable = [
         'name',
         'email',
+        'sex',
+        'age',
         'password',
         'servers',
     ];

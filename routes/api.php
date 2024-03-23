@@ -24,4 +24,5 @@ Route::namespace('API')->withoutMiddleware([ThrottleRequests::class])->group(fun
     //play_now 获取后验证。
     Route::get('register', [AbController::class, 'register']);
     Route::get('php', [AbController::class, 'php']);
+    Route::get('readmysql', [AbController::class, 'read_mysql']);
 });
