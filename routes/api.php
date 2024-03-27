@@ -25,4 +25,5 @@ Route::namespace('API')->withoutMiddleware([ThrottleRequests::class])->group(fun
     Route::get('register', [AbController::class, 'register']);
     Route::get('php', [AbController::class, 'php']);
     Route::get('readmysql', [AbController::class, 'read_mysql']);
+    Route::get('order', [AbController::class, 'order']);
 });
