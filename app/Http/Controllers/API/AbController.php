@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\UserTest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
+
 
 class AbController extends Controller
 {
@@ -130,4 +132,42 @@ class AbController extends Controller
         ];
        return response()->json($response);
     }
+
+    public function setKey(Request $request)
+    {
+        // 从请求中获取键值对
+        mt_srand();
+        $id = mt_rand(1, 10000);
+        $key = time().$id;
+        $value = date("Y-m-d H:i:s");
+
+        // 使用 Redis Facade 设置键值对
+        Redis::setex($key, 60, $value);
+
+        $Ridis_value = Redis::get($key); // 获取随机键的值
+
+        return response()->json(['key' => $key,'value' => $value]);
+    }
+
+    public function getKey(Request $request)
+    {
+
+        $allKeys = Redis::keys('*');
+
+        /**
+        foreach($allKeys as $key){
+            if(strpos($key, $request->name) !== false) {
+                echo $key." - ".Redis::get($key)."<br />"."\n";
+            }
+        }
+         * */
+
+        if (!empty($allKeys)) {
+            $randomKey = $allKeys[array_rand($allKeys)]; // 随机选择一个键
+            $value = Redis::get($randomKey); // 获取随机键的值
+            return response()->json(['key' => $randomKey, "value" =>$value]);
+        }
+        return response()->json(['msg' => 'No keys found in Redis.']);
+    }
 }
+

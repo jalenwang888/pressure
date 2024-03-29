@@ -125,9 +125,49 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX'),
         ],
 
+        'default' => [
+            'scheme' => 'tcp',
+            'host' => env('REDIS_HOST', '127.0.0.1'),
+            'password' => env('REDIS_PASSWORD'),
+            'port' => env('REDIS_PORT', 6379),
+            'database' => env('REDIS_DB', 0),
+        ],
+
+        'cluster1' => [
+            [
+                'scheme' => 'tcp',
+                'host' => env('REDIS_HOST', '127.0.0.1'),
+                'password' => env('REDIS_PASSWORD'),
+                'port' => 6371,
+                'database' => 0,
+            ],
+            // 添加更多的 Redis 实例配置...
+        ],
+
+        'cluster2' => [
+            [
+                'scheme' => 'tcp',
+                'host' => env('REDIS_HOST', '127.0.0.1'),
+                'password' => env('REDIS_PASSWORD'),
+                'port' => 6372,
+                'database' => 0,
+            ],
+            // 添加更多的 Redis 实例配置...
+        ],
+        'cluster3'=> [
+            [
+                'scheme' => 'tcp',
+                'host' => env('REDIS_HOST', '127.0.0.1'),
+                'password' => env('REDIS_PASSWORD'),
+                'port' => 6373,
+                'database' => 0,
+            ],
+            // 添加更多的 Redis 实例配置...
+        ],
+        /**
         'default' => [
             'url' => env('REDIS_URL'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
@@ -136,6 +176,7 @@ return [
             'port' => env('REDIS_PORT', '6379'),
             'database' => env('REDIS_DB', '0'),
         ],
+         **/
 
         'cache' => [
             'url' => env('REDIS_URL'),
